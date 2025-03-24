@@ -39,7 +39,7 @@ fluidPage(
             "<br>",
             "<a target = '_blank'
                         style  = 'font-size:10px'
-                        href   = segunda-seccion>download database example
+                        href   = 'https://github.com/Josacc/shiny_one_way_anova_20250324/tree/main/www'>download database example
                     </a>"
           )
         ),
