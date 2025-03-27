@@ -9,12 +9,12 @@ library(DT)
 
 
 fluidPage(
-  titlePanel("One-way ANOVA"),
+  titlePanel("ANOVA"),
   fluidRow(
     column(
       width = 2,
       h4(
-        p(strong("One-way ANOVA")),
+        p(strong("One-way")),
         style = "color: #3c8dbc"
       )
     ),
@@ -37,10 +37,12 @@ fluidPage(
           paste0(
             "Import (.csv or .xlsx) file",
             "<br>",
-            "<a target = '_blank'
-                        style  = 'font-size:10px'
-                        href   = 'https://github.com/Josacc/shiny_one_way_anova_20250324/tree/main/www'>download database example
-                    </a>"
+            "<a href='database_example.zip'
+                    download
+                    style='font-size:12px'
+                    target='_blank'>
+                    Download database example <i class='fa-solid fa-download'></i>
+                </a>"
           )
         ),
         accept = c(".xlsx", ".csv")
