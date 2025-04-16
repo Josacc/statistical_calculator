@@ -28,7 +28,9 @@ function(input, output, session) {
           hypothesis tests to apply the ANOVA. The information can be loaded in
           xlsx or csv format, specifying the reference sheet and selecting the
           column containing the response variable.',
-        tags$br()
+        tags$br(), tags$br(),
+        'Note: You can download the sample database to test the app.',
+        tags$br(),
       ),
       html  = TRUE,
       width = "55%"
@@ -88,13 +90,13 @@ function(input, output, session) {
   })
 
   output$plot <- renderPlotly({
-    if(input$tabset == "Plot")
+    if(input$tabset == "Box plot")
       graph_type()
 
   })
 
   output$t_anova <- renderPrint({
-    if(input$tabset == "Inference")
+    if(input$tabset == "Statistical analysis")
       analysis_type()
   })
 }

@@ -35,7 +35,7 @@ fluidPage(
         "upload_file",
         HTML(
           paste0(
-            "Import (.csv or .xlsx) file",
+            "Import (csv or xlsx) file",
             "<br>",
             "<a href='database_example.zip'
                     download
@@ -65,28 +65,28 @@ fluidPage(
       ),
       tabsetPanel(
         id = "tabset",
-        tabPanel("Plot",
+        tabPanel("Box plot",
                  br(),
                  radioButtons(
-                   "id_fun_order", "ordered by",
+                   "id_fun_order", "Ordered by",
                    choices = c("NULL", "mean", "median", "sd"), inline = TRUE
                  ),
                  radioButtons(
-                   "id_order", "order",
+                   "id_order", "Order",
                    choices = c("ascending", "descending"), inline = TRUE
                  ),
                  br(),
                  textInput(
-                   "nombre", label = "graphic title"
+                   "nombre", label = "Graphic title"
                  ),
                  textInput(
                    "eje_y", label = "Y axis title"
                  )
         ),
-        tabPanel("Inference",
+        tabPanel("Statistical analysis",
                  br(),
                  radioButtons(
-                   "selection", "select",
+                   "selection", "Select test",
                    choices = c("Normality", "Homoscedasticity", "ANOVA", "all"),
                    inline = T
                  )
