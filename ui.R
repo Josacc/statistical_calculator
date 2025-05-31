@@ -31,6 +31,15 @@ fluidPage(
   sidebarLayout(
     sidebarPanel(
       width = 3,
+      actionBttn(
+        'test_data',
+        label = 'Show default example',
+        style = 'float',
+        block = TRUE,
+        color = 'primary',
+        size  = 'xs'
+      ),
+      br(), br(),
       fileInput(
         "upload_file",
         HTML(
@@ -51,14 +60,18 @@ fluidPage(
         column(
           width = 5,
           numericInput(
-            "n_hoja", "sheet", width = '80px', value = 1,
+            "n_hoja",
+            "Choose the sheet",
+            width = '80px', value = 1,
             min = 1, max = 2
           )
         ),
         column(
           width = 5,
           numericInput(
-            "n_col", "col", width = '80px', value = 2,
+            "n_col",
+            "Choose the col",
+            width = '80px', value = 2,
             min = 2, max = 7
           )
         )
@@ -67,13 +80,23 @@ fluidPage(
         id = "tabset",
         tabPanel("Box plot",
                  br(),
-                 radioButtons(
-                   "id_fun_order", "Ordered by",
-                   choices = c("NULL", "mean", "median", "sd"), inline = TRUE
+                 prettyRadioButtons(
+                   "id_fun_order",
+                   "Ordered by",
+                   choices    = c("Default", "Mean", "Median", "Standard deviation"),
+                   status     = 'primary',
+                   icon       = icon('check'),
+                   animation  = 'smooth'
                  ),
-                 radioButtons(
-                   "id_order", "Order",
-                   choices = c("ascending", "descending"), inline = TRUE
+                 radioGroupButtons(
+                   "id_order",
+                   "Order",
+                   selected = character(0),
+                   choices = c(
+                     `<i class='fa fa-sort-up'></i> Ascending ` = 'Ascending',
+                     `<i class='fa fa-sort-down'></i> Descending ` = 'Descending'
+                   ),
+                   justified = TRUE,
                  ),
                  br(),
                  textInput(

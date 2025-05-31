@@ -37,55 +37,48 @@ function(input, output, session) {
     )
   })
 
-  graph_type <- eventReactive(input$go, {
-    ext <- tools::file_ext(input$upload_file$datapath)
+  raw_data <- reactive({
     req(input$upload_file)
+    ext <-  tools::file_ext(input$upload_file$datapath)
     validate(need(ext == "csv" | ext == "xlsx" , "Please upload a csv or xlsx file"))
-
     if(ext == "csv"){
       d <- input$upload_file$datapath %>%
         read_csv()
     }else(d <- input$upload_file$datapath %>%
             read_excel(sheet = input$n_hoja)
     )
+    return(d)
+  })
 
+  graph_type <- eventReactive(input$go, {
     switch(
       input$id_fun_order,
-      `NULL` = grafica(d, input$n_col, input$nombre, input$eje_y),
-      mean = switch(
+      Default = grafica(raw_data(), input$n_col, input$nombre, input$eje_y),
+      Mean    = switch(
         input$id_order,
-        ascending = g_as_mean(d, input$n_col, input$nombre, input$eje_y),
-        descending = g_des_mean(d, input$n_col, input$nombre, input$eje_y)
+        Ascending  = g_as_mean(raw_data(), input$n_col, input$nombre, input$eje_y),
+        Descending = g_des_mean(raw_data(), input$n_col, input$nombre, input$eje_y)
       ) ,
-      median = switch(
+      Median = switch(
         input$id_order,
-        ascending = g_as_median(d, input$n_col, input$nombre, input$eje_y),
-        descending = g_des_median(d, input$n_col, input$nombre, input$eje_y)
+        Ascending  = g_as_median(raw_data(), input$n_col, input$nombre, input$eje_y),
+        Descending = g_des_median(raw_data(), input$n_col, input$nombre, input$eje_y)
       ) ,
-      sd = switch(
+      `Standard deviation` = switch(
         input$id_order ,
-        ascending = g_as_sd(d, input$n_col, input$nombre, input$eje_y),
-        descending = g_des_sd(d, input$n_col, input$nombre, input$eje_y)
+        Ascending  = g_as_sd(raw_data(), input$n_col, input$nombre, input$eje_y),
+        Descending = g_des_sd(raw_data(), input$n_col, input$nombre, input$eje_y)
       )
     )
   })
 
   analysis_type <- eventReactive(input$go , {
-    ext <-  tools::file_ext(input$upload_file$datapath)
-    req(input$upload_file)
-    validate(need(ext == "csv" | ext == "xlsx" , "Please upload a csv or xlsx file"))
-    if(ext == "csv"){
-      d <- input$upload_file$datapath %>%
-        read_csv()
-    }else(d <- input$upload_file$datapath %>%
-            read_excel(sheet = input$n_hoja)
-    )
     switch(
       input$selection ,
-      Normality        = shapiro(d, input$n_col) ,
-      Homoscedasticity = bar(d, input$n_col) ,
-      ANOVA            = an(d, input$n_col) ,
-      all              = analisis(d, input$n_col)
+      Normality        = shapiro(raw_data(), input$n_col) ,
+      Homoscedasticity = bar(raw_data(), input$n_col) ,
+      ANOVA            = an(raw_data(), input$n_col) ,
+      all              = analisis(raw_data(), input$n_col)
     )
   })
 
