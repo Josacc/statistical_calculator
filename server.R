@@ -6,6 +6,7 @@ library(scales)
 library(shinyWidgets)
 library(shinycssloaders)
 library(DT)
+library(shinydashboard)
 
 function(input, output, session) {
 
@@ -45,7 +46,7 @@ function(input, output, session) {
       d <- input$upload_file$datapath %>%
         read_csv()
     }else(d <- input$upload_file$datapath %>%
-            read_excel(sheet = input$n_hoja)
+            read_excel()
     )
     return(d)
   })
