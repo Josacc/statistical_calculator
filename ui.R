@@ -13,6 +13,8 @@ library(shinyFeedback)
 library(shinyfullscreen)
 library(xfun)
 
+source('modules/home.R')
+source('modules/anova.R')
 
 dashboardPage(
   dashboardHeader(
@@ -59,7 +61,24 @@ dashboardPage(
       )
     )
   ),
-  dashboardSidebar(),
+  dashboardSidebar(
+    width = 200,
+    HTML(str_c('<br><br><br><br><br><br>')),
+    sidebarMenu(
+      menuItem(
+        tags$span("Home", style = "margin-left: 5px;"),
+        tabName = 'home',
+        icon    = icon('house')
+      ),
+      menuItem(
+        tags$span('ANOVA', style = "margin-left: 5px;"),
+        tabName = 'anova',
+        icon    = icon('chart-simple')
+      )
+    )
+
+
+  ),
   dashboardBody(
     tags$head(tags$style(HTML("
       .content-wrapper {
@@ -70,8 +89,12 @@ dashboardPage(
           color: white !important;
         }
     "
-    )))
-
+    ))),
+    fullscreen_all(click_id = 'page_full'),
+    tabItems(
+      home_UI('id_home'),
+      anova_UI('id_anova')
+    )
   )
 )
 

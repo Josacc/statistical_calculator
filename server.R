@@ -10,6 +10,9 @@ library(shinydashboard)
 
 function(input, output, session) {
 
+  home_Server('id_home')
+  anova_Server('id_anova')
+
   observeEvent(input$info_button_one_way_anova, {
     show_alert(
       session = session,
