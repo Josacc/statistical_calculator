@@ -12,6 +12,8 @@ library(shinycssloaders)
 library(shinyFeedback)
 library(shinyfullscreen)
 library(xfun)
+library(mosaic)
+library(mosaicCalc)
 
 source('modules/home.R')
 source('modules/anova.R')
@@ -62,7 +64,7 @@ dashboardPage(
     )
   ),
   dashboardSidebar(
-    width = 200,
+    width = 180,
     HTML(str_c('<br><br><br><br><br><br>')),
     sidebarMenu(
       menuItem(
@@ -97,120 +99,3 @@ dashboardPage(
     )
   )
 )
-
-# page_sidebar(
-#   title = 'One way ANOVA',
-#   sidebar = sidebar(
-#     width = 380,
-#     fg = 'blue',
-
-  # titlePanel("ANOVA"),
-  # fluidRow(
-  #   column(
-  #     width = 2,
-  #     h4(
-  #       p(strong("One-way")),
-  #       style = "color: #3c8dbc"
-  #     )
-  #   ),
-  #   column(
-  #     width = 1,
-  #     actionBttn(
-  #       inputId = "info_button_one_way_anova",
-  #       label   = "",
-  #       icon    = icon("info-circle"),
-  #       style   = "jelly"
-  #     )
-  #   )
-  # ),
-  # page_sidebar(
-    #  sidebar = sidebar(
-    #   width = 3,
-#       accordion(
-#         accordion_panel(title = 'Primary controls', value = 'primary',
-#           actionBttn(
-#             'test_data',
-#             label = 'Show default example',
-#             style = 'float',
-#             block = TRUE,
-#             color = 'primary',
-#             size  = 'xs'
-#           ),
-#           br(), br(),
-#           fileInput(
-#             "upload_file",
-#             HTML(
-#               paste0(
-#                 "Import (csv or xlsx) file",
-#                 "<br>",
-#                 "<a href='database_example.zip'
-#                     download
-#                     style='font-size:12px'
-#                     target='_blank'>
-#                     Download database example <i class='fa-solid fa-download'></i>
-#                 </a>"
-#               )
-#             ),
-#             accept = c(".xlsx", ".csv")
-#           ),
-#           numericInput(
-#             "n_col",
-#             "Choose the data column",
-#             value = 2,
-#             min = 2, max = 100
-#           ),
-#           br()
-#         ),
-#         accordion_panel(title = 'Secundary controls', value = 'sec',
-#           navset_card_pill(
-#             id = "tabset",
-#             nav_panel("Box plot",
-#                       br(),
-#                       prettyRadioButtons(
-#                         "id_fun_order",
-#                         "Ordered by",
-#                         choices    = c("Default", "Mean", "Median", "Standard deviation"),
-#                         status     = 'primary',
-#                         icon       = icon('check'),
-#                         animation  = 'smooth'
-#                       ),
-#                       radioGroupButtons(
-#                         "id_order",
-#                         "Order",
-#                         selected = character(0),
-#                         choices = c(
-#                           `<i class='fa fa-sort-up'></i> Ascending ` = 'Ascending',
-#                           `<i class='fa fa-sort-down'></i> Descending ` = 'Descending'
-#                         ),
-#                         justified = TRUE,
-#                       ),
-#                       br(),
-#                       textInput(
-#                         "nombre", label = "Graphic title"
-#                       ),
-#                       textInput(
-#                         "eje_y", label = "Y axis title"
-#                       )
-#             ),
-#             nav_spacer(),
-#             nav_panel("Statistical analysis",
-#                       br(),
-#                       radioButtons(
-#                         "selection", "Select test",
-#                         choices = c("Normality", "Homoscedasticity", "ANOVA", "all"),
-#                         inline = T
-#                       )
-#             )
-#           )
-#         )
-#
-#         )
-#
-#     ),
-#     card(
-#       actionButton("go", "Go"),
-#       verbatimTextOutput("t_anova"),
-#       plotlyOutput("plot")
-#     )
-#   # )
-# )

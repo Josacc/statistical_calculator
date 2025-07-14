@@ -1,11 +1,3 @@
-library(tidyverse)
-library(readxl)
-library(plotly)
-library(scales)
-library(DT)
-library(mosaic)
-library(mosaicCalc)
-
 
 grafica <- function(d, n_col, nombre, eje_y){
 
