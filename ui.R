@@ -64,7 +64,7 @@ dashboardPage(
     )
   ),
   dashboardSidebar(
-    width = 180,
+    width = 150,
     HTML(str_c('<br><br><br><br><br><br>')),
     sidebarMenu(
       menuItem(
