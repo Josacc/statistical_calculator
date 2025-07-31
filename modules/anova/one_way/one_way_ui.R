@@ -57,9 +57,9 @@ anova_one_way_UI <- function(id) {
             'Box plot',
             br(),
             prettyRadioButtons(
-              ns('id_fun_order'),
+              ns('id_order_fun'),
               'Ordered by',
-              choices    = c('Default', 'Mean', 'Median', 'Standard deviation'),
+              choices    = c('Default', 'Mean', 'Median', 'Sd'),
               status     = 'primary',
               icon       = icon('check'),
               animation  = 'smooth'
@@ -76,10 +76,10 @@ anova_one_way_UI <- function(id) {
             ),
             br(),
             textInput(
-              ns('nombre'), label = 'Graphic title'
+              ns('title_name'), label = 'Graphic title'
             ),
             textInput(
-              ns('eje_y'), label = 'Y axis title'
+              ns('name_axis_y'), label = 'Y axis title'
             )
           ),
           tabPanel('Statistical analysis',

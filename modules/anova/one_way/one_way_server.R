@@ -32,24 +32,13 @@ anova_one_way_Server <- function(id, source_data) {
     })
 
     graph_type <- eventReactive(input$go, {
-      switch(
-        input$id_fun_order,
-        Default = grafica(source_data(), input$n_col, input$nombre, input$eje_y),
-        Mean    = switch(
-          input$id_order,
-          Ascending  = g_as_mean(source_data(), input$n_col, input$nombre, input$eje_y),
-          Descending = g_des_mean(source_data(), input$n_col, input$nombre, input$eje_y)
-        ) ,
-        Median = switch(
-          input$id_order,
-          Ascending  = g_as_median(source_data(), input$n_col, input$nombre, input$eje_y),
-          Descending = g_des_median(source_data(), input$n_col, input$nombre, input$eje_y)
-        ) ,
-        `Standard deviation` = switch(
-          input$id_order ,
-          Ascending  = g_as_sd(source_data(), input$n_col, input$nombre, input$eje_y),
-          Descending = g_des_sd(source_data(), input$n_col, input$nombre, input$eje_y)
-        )
+
+      box_plot(
+        .data      = source_data(),
+        # y          = input$name_axis_y, !!!
+        .n_col     = input$n_col,
+        .order_by  = input$id_order_fun,
+        title_name = input$title_name
       )
     })
 
