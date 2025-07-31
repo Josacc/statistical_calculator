@@ -4,15 +4,11 @@ anova_one_way_UI <- function(id) {
   ns <- NS(id)
   tabPanel(
     'One way',
-    icon = icon('upload'),
-
+    icon = icon('square-poll-vertical'),
     fluidRow(
       column(
         width = 2,
-        h3(
-          p(strong('One way ANOVA')),
-          style = 'color: #3c8dbc'
-        )
+        h3(p(strong('One way ANOVA')), style = 'color: #3c8dbc')
       ),
       column(
         width = 1,
@@ -43,8 +39,7 @@ anova_one_way_UI <- function(id) {
             numericInput(
               ns('n_hoja'),
               'Choose the sheet',
-              width = '80px', value = 1,
-              min = 1, max = 2
+              width = '80px', value = 1, min = 1, max = 2
             )
           ),
           column(
@@ -52,8 +47,7 @@ anova_one_way_UI <- function(id) {
             numericInput(
               ns('n_col'),
               'Choose the col',
-              width = '80px', value = 2,
-              min = 2, max = 7
+              width = '80px', value = 2, min = 2, max = 7
             )
           )
         ),

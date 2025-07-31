@@ -1,3 +1,5 @@
+source('modules/anova/one_way/one_way_global.R')
+
 anova_one_way_Server <- function(id, source_data) {
   moduleServer(id, function(input, output, session) {
 

@@ -4,7 +4,7 @@ anova_upload_file_UI <- function(id) {
   ns <- NS(id)
   tabPanel(
     'Load data',
-    icon = icon('upload'),
+    icon = icon('database'),
     br(),
     fluidRow(
       column(
