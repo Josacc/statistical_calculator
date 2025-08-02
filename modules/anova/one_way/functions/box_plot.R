@@ -1,4 +1,7 @@
-box_plot <- function(.data, .n_col, x = 'Treatments', y = 'Variable', .order = FALSE, .order_by = 'Default', title_name = NULL) {
+box_plot <- function(.data, .n_col, x = "", y = "", .order = FALSE, .order_by = 'Default', title_name = NULL) {
+
+  if (str_length(x) == 0) {x <- 'Treatments'}
+  if (str_length(y) == 0) {y <- 'Variable'}
 
   names(.data)[1] <- x
   names(.data)[.n_col] <- y

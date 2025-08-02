@@ -5,22 +5,6 @@ anova_one_way_UI <- function(id) {
   tabPanel(
     'One way',
     icon = icon('square-poll-vertical'),
-    fluidRow(
-      column(
-        width = 2,
-        h3(p(strong('One way ANOVA')), style = 'color: #3c8dbc')
-      ),
-      column(
-        width = 1,
-        actionBttn(
-          inputId = ns('info_button_one_way_anova'),
-          label   = '',
-          icon    = icon('info-circle'),
-          style   = 'jelly'
-        )
-      )
-    ),
-    br(),
     sidebarLayout(
       sidebarPanel(
         width = 3,
@@ -32,27 +16,15 @@ anova_one_way_UI <- function(id) {
           color = 'primary',
           size  = 'xs'
         ),
-        br(), br(),
-        fluidRow(
-          column(
-            width = 5,
-            numericInput(
-              ns('n_hoja'),
-              'Choose the sheet',
-              width = '80px', value = 1, min = 1, max = 2
-            )
-          ),
-          column(
-            width = 5,
-            numericInput(
-              ns('n_col'),
-              'Choose the col',
-              width = '80px', value = 2, min = 2, max = 7
-            )
-          )
+        br(),
+        numericInput(
+          ns('n_col'),
+          'Choose the col',
+          width = '100px', value = 2, min = 2, max = 7
         ),
         tabsetPanel(
-          id = ns('tabset'),
+          id = ns('tabset'),type = 'pills',
+
           tabPanel(
             'Box plot',
             br(),
@@ -93,7 +65,22 @@ anova_one_way_UI <- function(id) {
         )
       ),
       mainPanel(
-        actionButton(ns('go'), 'Go'),
+        actionBttn(
+          inputId = ns('go'),
+          label = 'Analyze',
+          style = 'simple',
+          size = 'sm',
+          color = 'primary'
+        ),
+
+            # actionBttn(
+            #   inputId = ns('info_button_one_way_anova'),
+            #   label   = '',
+            #   icon    = icon('info-circle'),
+            #   style   = 'jelly'
+            # )
+
+
         verbatimTextOutput(ns('t_anova')),
         plotlyOutput(ns('plot'))
       )

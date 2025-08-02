@@ -35,7 +35,8 @@ anova_one_way_Server <- function(id, source_data) {
 
       box_plot(
         .data      = source_data(),
-        # y          = input$name_axis_y, !!!
+        # x          =
+        y          = input$name_axis_y,
         .n_col     = input$n_col,
         .order_by  = input$id_order_fun,
         title_name = input$title_name

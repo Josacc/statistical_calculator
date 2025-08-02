@@ -89,7 +89,12 @@ dashboardPage(
       .skin-blue .main-header .logo {
           background-color: #3c8dbc !important;
           color: white !important;
-        }
+      }
+      #id_anova-id_anova_one_way-go {
+       background-color: #3c8dbc !important;
+       color: white !important;
+       border-color: #3c8dbc !important;
+     }
     "
     ))),
     fullscreen_all(click_id = 'page_full'),
