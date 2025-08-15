@@ -1,23 +1,21 @@
-shapiro <- function(d, n_col){
-  d[[1]] %>%
+shapiro_test <- function(data, n_col){
+  st <- data[[1]] %>%
     unique() %>%
-    sapply(function(x)(d %>% filter(d[[1]] == x))[[n_col]] %>% shapiro.test())
+    sapply(function(x)(data %>% filter(data[[1]] == x))[[n_col]] %>% shapiro.test())
+  st <- as.data.frame(st) %>% .[c(1, 2), ]
+  return(st)
 }
 
-bar <- function(d, n_col){
-  bartlett.test(d[[n_col]] ~ d[[1]])
+bartlett_test <- function(data, n_col, x = 'Treatments'){
+  bt <- bartlett.test(data[[n_col]] ~ data[[1]])
+  bt <- as.data.frame(list(bt$statistic, bt$parameter, bt$p.value), row.names =  x) %>%
+    `names<-`(c("Bartlett's K-squared", 'Df', 'p.value'))
+  return(bt)
 }
 
-an <- function(d, n_col){
-  print("ANOVA")
-  aov(d[[n_col]] ~ d[[1]]) %>%
-    summary()
-}
-
-analisis <- function(d, n_col){
-
-  print(shapiro(d , n_col))
-  print(bar(d , n_col))
-  print(an(d , n_col))
-
+anova_test <- function(data, n_col, x = 'Treatments'){
+  at <- aov(data[[n_col]] ~ data[[1]], data = data)
+  at <- summary(at)[[1]] %>%
+    `row.names<-`(c(x, 'Residuals'))
+  return(at)
 }

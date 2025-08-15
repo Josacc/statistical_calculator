@@ -90,7 +90,7 @@ dashboardPage(
           background-color: #3c8dbc !important;
           color: white !important;
       }
-      #id_anova-id_anova_one_way-go {
+      #id_anova-id_anova_one_way-analyze {
        background-color: #3c8dbc !important;
        color: white !important;
        border-color: #3c8dbc !important;

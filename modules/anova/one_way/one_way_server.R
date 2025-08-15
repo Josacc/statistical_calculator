@@ -31,37 +31,60 @@ anova_one_way_Server <- function(id, source_data) {
       )
     })
 
-    graph_type <- eventReactive(input$go, {
-
+    graph_type <- eventReactive(input$analyze, {
       box_plot(
         .data      = source_data(),
-        # x          =
+        x          = input$name_axis_x,
         y          = input$name_axis_y,
         .n_col     = input$n_col,
         .order_by  = input$id_order_fun,
+        .order     = input$id_order,
         title_name = input$title_name
       )
     })
 
-    analysis_type <- eventReactive(input$go , {
-      switch(
-        input$selection ,
-        Normality        = shapiro(source_data(), input$n_col) ,
-        Homoscedasticity = bar(source_data(), input$n_col) ,
-        ANOVA            = an(source_data(), input$n_col) ,
-        all              = analisis(source_data(), input$n_col)
+    observeEvent(input$id_order_fun, {
+      if (input$id_order_fun == 'Default') {
+        var <- 'empty'
+      } else {var <- 'order'}
+      updateTabsetPanel(session, 'tabset_order', selected = var)
+    })
+
+    empty_message <- eventReactive(input$analyze, {
+      validate(need(input$inferential_test, "Select at least one test"))
+    })
+
+    output$empty <- renderTable({
+      req(input$tabset == "Statistical analysis")
+      empty_message()
+    })
+
+    analysis_type <- eventReactive(input$analyze, {
+      req(input$inferential_test)
+      vec_test <- input$inferential_test
+      list_tests <- list(
+        Normality        = shapiro_test(source_data(), input$n_col),
+        Homoscedasticity = bartlett_test(source_data(), input$n_col),
+        ANOVA            = anova_test(source_data(), input$n_col),
+        Tukey            = anova_test(source_data(), input$n_col)
       )
+      return(list_tests[vec_test])
+    })
+
+    render_table <- function(var_input) {
+      output[[var_input]] <- renderTable({
+        req(input$tabset == "Statistical analysis")
+        analysis_type()[[var_input]]
+      }, rownames = TRUE, na = '')
+    }
+
+    observeEvent(analysis_type(), {
+      map(names(analysis_type()), render_table)
     })
 
     output$plot <- renderPlotly({
       if(input$tabset == "Box plot")
         graph_type()
-
-    })
-
-    output$t_anova <- renderPrint({
-      if(input$tabset == "Statistical analysis")
-        analysis_type()
     })
 
   })
