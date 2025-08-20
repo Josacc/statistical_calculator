@@ -9,9 +9,9 @@ anova_UI <- function(id) {
   tabItem(
     'anova',
     navbarPage(
-      title       = 'ANOVA',
+      title       = 'Analysis of Variance',
       id          = ns('id_navbar_anova'),
-      # selected    = 'Cargar archivo',
+      selected    = 'Upload',
       collapsible = TRUE,
       anova_upload_file_UI(ns('id_anova_upload_file')),
       anova_one_way_UI(ns('id_anova_one_way'))

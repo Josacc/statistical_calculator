@@ -8,14 +8,6 @@ anova_one_way_UI <- function(id) {
     sidebarLayout(
       sidebarPanel(
         width = 3,
-        actionBttn(
-          ns('test_data'),
-          label = 'Show default example',
-          style = 'float',
-          block = TRUE,
-          color = 'primary',
-          size  = 'xs'
-        ),
         br(),
         numericInput(
           ns('n_col'),
@@ -88,7 +80,7 @@ anova_one_way_UI <- function(id) {
               inputId = ns('analyze'),
               label = 'Analyze',
               style = 'simple',
-              size = 'sm',
+              size  = 'sm',
               color = 'primary'
             ),
             br(), br(), br(),
