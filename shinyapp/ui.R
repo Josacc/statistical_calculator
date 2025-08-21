@@ -14,7 +14,6 @@ library(shinyfullscreen)
 library(xfun)
 library(mosaic)
 library(mosaicCalc)
-library(shinyjs)
 
 source('modules/home.R')
 source('modules/anova.R')
@@ -28,7 +27,6 @@ dashboardPage(
       justify-content: center;
       height: 50px;
       width: 100%;
-
       ',
       tags$image(
         src    = 'logo_dashboardheader.png',
@@ -65,7 +63,7 @@ dashboardPage(
     )
   ),
   dashboardSidebar(
-    width = 150,
+    width = 120,
     HTML(str_c('<br><br><br><br><br><br>')),
     sidebarMenu(
       menuItem(
@@ -96,9 +94,14 @@ dashboardPage(
           background-color: #3c8dbc !important;
           color: white !important;
       }
+      /* Delete focus */
       :focus {
         outline: 0 !important;
         box-shadow: none !important;
+      }
+      .nav-tabs-custom {
+        box-shadow: none !important;
+        border: none !important;
       }
       #id_anova-id_anova_one_way-analyze {
        background-color: #3c8dbc !important;
