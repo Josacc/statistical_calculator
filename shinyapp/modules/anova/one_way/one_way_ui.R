@@ -2,9 +2,7 @@
 
 anova_one_way_UI <- function(id) {
   ns <- NS(id)
-  tabPanel(
-    'One way',
-    icon = icon('square-poll-vertical'),
+  tagList(
     sidebarLayout(
       sidebarPanel(
         width = 3,

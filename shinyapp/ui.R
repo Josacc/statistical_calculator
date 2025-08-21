@@ -96,6 +96,10 @@ dashboardPage(
           background-color: #3c8dbc !important;
           color: white !important;
       }
+      :focus {
+        outline: 0 !important;
+        box-shadow: none !important;
+      }
       #id_anova-id_anova_one_way-analyze {
        background-color: #3c8dbc !important;
        color: white !important;

@@ -2,9 +2,7 @@
 
 anova_upload_file_UI <- function(id) {
   ns <- NS(id)
-  tabPanel(
-    'Upload',
-    icon = icon('database'),
+  tagList(
     fluidRow(
       column(
         width = 11,
@@ -15,8 +13,7 @@ anova_upload_file_UI <- function(id) {
             fileInput(
               ns('id_file_upload'),
               'Upload file',
-              accept      = c('.xlsx', '.csv'),
-              width       = '450px'
+              accept = c('.xlsx', '.csv')
             ),
             actionBttn(
               ns('default_example'),
