@@ -86,30 +86,7 @@ dashboardPage(
 
   ),
   dashboardBody(
-    tags$head(tags$style(HTML("
-      .content-wrapper {
-        background-color: #FFFFFF;
-      }
-      .skin-blue .main-header .logo {
-          background-color: #3c8dbc !important;
-          color: white !important;
-      }
-      /* Delete focus */
-      :focus {
-        outline: 0 !important;
-        box-shadow: none !important;
-      }
-      .nav-tabs-custom {
-        box-shadow: none !important;
-        border: none !important;
-      }
-      #id_anova-id_anova_one_way-analyze {
-       background-color: #3c8dbc !important;
-       color: white !important;
-       border-color: #3c8dbc !important;
-     }
-    "
-    ))),
+    tags$head(tags$link(rel = 'stylesheet', type = 'text/css', href = 'style.css')),
     fullscreen_all(click_id = 'page_full'),
     tabItems(
       home_UI('id_home'),
