@@ -45,7 +45,7 @@ anova_one_way_Server <- function(id, source_data) {
 
     observeEvent(input$id_order_fun, {
       if (input$id_order_fun == 'Default') {
-        var <- 'empty'
+        var <- 'empty_tab'
       } else {var <- 'order'}
       updateTabsetPanel(session, 'tabset_order', selected = var)
     })

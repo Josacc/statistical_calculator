@@ -34,7 +34,7 @@ anova_one_way_UI <- function(id) {
                 tabsetPanel(
                   id = ns('tabset_order'),
                   type = 'hidden',
-                  tabPanel('empty'),
+                  tabPanel('empty_tab'),
                   tabPanel(
                     'order',
                     h5(p(strong('Order')), style = "margin-top: 4px;"),
@@ -52,9 +52,11 @@ anova_one_way_UI <- function(id) {
                 )
               )
             ),
-            textInput(ns('title_name'), label = 'Graphic title'),
-            textInput(ns('name_axis_x'), label = 'X axis title'),
-            textInput(ns('name_axis_y'), label = 'Y axis title')
+            map2(
+              list('title_name', 'name_axis_x', 'name_axis_y'),
+              list('Graphic title', 'X axis title', 'Y axis title'),
+              ~ textInput(ns(.x), .y)
+            )
           ),
           tabPanel(
             'Statistical analysis',
@@ -82,9 +84,8 @@ anova_one_way_UI <- function(id) {
               color = 'primary'
             ),
             br(), br(), br(),
-            tableOutput(ns('empty')),
             map(
-              c('Normality', 'Homoscedasticity', 'ANOVA', 'Tukey'),
+              c('empty', 'Normality', 'Homoscedasticity', 'ANOVA', 'Tukey'),
               ~ tableOutput(ns(.x))
             ),
             plotlyOutput(ns('plot'))

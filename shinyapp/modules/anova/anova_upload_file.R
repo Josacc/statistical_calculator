@@ -21,7 +21,7 @@ anova_upload_file_UI <- function(id) {
               style = 'float',
               color = 'primary',
               size  = 'xs'
-            ),
+            )
           ),
           mainPanel()
         )
@@ -38,9 +38,7 @@ anova_upload_file_UI <- function(id) {
           )
         )
       )
-    ),
-    br(),
-    dataTableOutput(ns('table'))
+    )
   )
 }
 
@@ -81,11 +79,6 @@ anova_upload_file_Server <- function(id) {
       if (!is.null(df)) {
         data_store(df)
       }
-    })
-
-    output$table <- renderDataTable({
-      req(data_store())
-      data_store()
     })
 
     return(data_store)
