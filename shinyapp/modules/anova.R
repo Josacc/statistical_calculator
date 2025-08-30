@@ -6,29 +6,36 @@ source('modules/anova/one_way/one_way_ui.R')
 source('modules/anova/one_way/one_way_server.R')
 
 anova_UI <- function(id) {
+
   ns <- NS(id)
+
   tabItem(
     'anova',
     tagList(
       fluidRow(
+
         box(
           solidHeader = TRUE,
           width       = 12,
+
           tabBox(
             id    = ns('id_navbar_anova'),
             width = 12,
             title = tags$b('Analysis of Variance', style = 'color: #3c8dbc;'),
+
             tabPanel(
               'Upload',
               icon = icon('database'),
               anova_upload_file_UI(ns('id_anova_upload_file'))
             ),
+
             tabPanel(
               'Data',
-              icon = icon('table'),
+              icon  = icon('table'),
               value = 'data_tab',
               anova_data_UI(ns('id_anova_data'))
             ),
+
             tabPanel(
               'One way',
               icon  = icon('square-poll-vertical'),
