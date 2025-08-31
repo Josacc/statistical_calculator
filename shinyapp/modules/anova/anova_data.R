@@ -1,7 +1,9 @@
 # 'data' module ----------------------------------------------------
 
 anova_data_UI <- function(id) {
+
   ns <- NS(id)
+
   tagList(
     br(),
     dataTableOutput(ns('table'))

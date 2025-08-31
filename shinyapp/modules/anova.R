@@ -12,38 +12,38 @@ anova_UI <- function(id) {
   tabItem(
     'anova',
     tagList(
-      fluidRow(
+      tabsetPanel(
+        id   = ns('id_navbar_anova'),
+        selected = 'tab_upload',
 
-        box(
-          solidHeader = TRUE,
-          width       = 12,
+        tabPanel(
+          tags$b('Analysis of Variance', style = 'color: #3c8dbc;'),
+          value = 'tab_anova',
+          br()
+        ),
 
-          tabBox(
-            id    = ns('id_navbar_anova'),
-            width = 12,
-            title = tags$b('Analysis of Variance', style = 'color: #3c8dbc;'),
+        tabPanel(
+          'Upload',
+          icon  = icon('database'),
+          value = 'tab_upload',
+          br(),
+          anova_upload_file_UI(ns('id_anova_upload_file'))
+        ),
 
-            tabPanel(
-              'Upload',
-              icon = icon('database'),
-              anova_upload_file_UI(ns('id_anova_upload_file'))
-            ),
+        tabPanel(
+          'Data Viewer',
+          icon  = icon('square-poll-vertical'),
+          value = 'tab_data',
+          br(),
+          anova_data_UI(ns('id_anova_data'))
+        ),
 
-            tabPanel(
-              'Data',
-              icon  = icon('table'),
-              value = 'data_tab',
-              anova_data_UI(ns('id_anova_data'))
-            ),
-
-            tabPanel(
-              'One way',
-              icon  = icon('square-poll-vertical'),
-              value = 'one_way_tab',
-              anova_one_way_UI(ns('id_anova_one_way')
-              )
-            )
-          )
+        tabPanel(
+          'One way',
+          icon  = icon('square-poll-vertical'),
+          value = 'tab_one_way',
+          br(),
+          anova_one_way_UI(ns('id_anova_one_way'))
         )
       )
     )
@@ -53,13 +53,13 @@ anova_UI <- function(id) {
 anova_Server <- function(id) {
   moduleServer(id, function(input, output, session) {
 
-    hideTab(inputId = 'id_navbar_anova', target = 'one_way_tab')
-    hideTab(inputId = 'id_navbar_anova', target = 'data_tab')
+    hideTab(inputId = 'id_navbar_anova', target = 'tab_one_way')
+    hideTab(inputId = 'id_navbar_anova', target = 'tab_data')
 
     observe({
       req(source_data())
-      showTab(inputId = 'id_navbar_anova', target = 'one_way_tab')
-      showTab(inputId = 'id_navbar_anova', target = 'data_tab')
+      showTab(inputId = 'id_navbar_anova', target = 'tab_one_way')
+      showTab(inputId = 'id_navbar_anova', target = 'tab_data')
     })
 
     source_data <- anova_upload_file_Server('id_anova_upload_file')

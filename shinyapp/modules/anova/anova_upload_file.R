@@ -1,13 +1,20 @@
 # 'upload file' module ----------------------------------------------------
 
 anova_upload_file_UI <- function(id) {
+
   ns <- NS(id)
+
   tagList(
+
     fluidRow(
+
       column(
         width = 11,
+
         sidebarLayout(
+
           sidebarPanel(
+
             width = 5,
             useShinyFeedback(),
             fileInput(
@@ -15,6 +22,7 @@ anova_upload_file_UI <- function(id) {
               'Upload file',
               accept = c('.xlsx', '.csv')
             ),
+
             actionBttn(
               ns('default_example'),
               label = 'Show default example',
@@ -23,6 +31,7 @@ anova_upload_file_UI <- function(id) {
               size  = 'xs'
             )
           ),
+
           mainPanel()
         )
       ),
